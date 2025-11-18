@@ -10,15 +10,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install cowsay
-        run: sudo apt-get install -y cowsay
-
-      - name: Execute cowsay command
-        run: cowsay "Hello from GitHub Actions!" > cowsay_output.txt
-
-      - name: Display cowsay output
-        run: cat cowsay_output.txt
-
-      - name: List files
-        run: ls -la
+      - name: ru script
+        run: ./script.sh
         
