@@ -1,0 +1,9 @@
+# workflow => jobs => steps => run => name: First Example
+name: First Example workflow
+on: [push] #// Trigger the workflow on push events
+jobs:
+  First-jobs:
+    runs-on: ubuntu-latest # Use the latest Ubuntu runner
+    steps:
+      - name: First Example
+        run: echo "This is my first example workflow!" # Print a message to the console
