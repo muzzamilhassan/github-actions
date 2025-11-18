@@ -22,6 +22,7 @@ jobs:
     concurrency:
       group: test-job-group
       cancel-in-progress: false
+    timeout-minutes: 20
     steps:
       - name: Download build artifact
         uses: actions/download-artifact@v4
