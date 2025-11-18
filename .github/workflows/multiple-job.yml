@@ -1,32 +1,44 @@
-name: multipule jobs flow
+name: Multipule Jobs Flow
+
 on: [push]
+
 jobs:
-  build-jobs:
+  build-job:
     runs-on: ubuntu-latest
     steps:
-      - name: install cowsay
-        run: sudo apt-get install cowsay
-      - name: execute cowsay
-        run: cowsay -f dragon "Build job executed successfully!" >> build_output.txt
-      - name: sleedp for 10 seconds
-        run: sleep 10
-  test-jobs:
+      - name: Create build artifact file
+        run: echo "Build job executed successfully!" > artifact.txt
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact
+          path: artifact.txt
+
+  test-job:
     runs-on: ubuntu-latest
-    needs: build-jobs
+    needs: build-job
     steps:
-      - name: install cowsay
-        run: sudo apt-get install cowsay
-      - name: execute cowsay
-        run: cowsay -f turtle "Test job executed successfully!" >> test_output.txt
-      - name: sleedp for 5 seconds
-        run: sleep 5
-  deploy-jobs:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifact
+
+      - name: Test artifact file
+        run: |
+          echo "Testing the artifact..."
+          cat artifact.txt
+
+  deploy-job:
     runs-on: ubuntu-latest
-    needs: test-jobs
+    needs: test-job
     steps:
-      - name: install cowsay
-        run: sudo apt-get install cowsay
-      - name: execute cowsay
-        run: cowsay -f elephant "Deploy job executed successfully!" >> deploy_output.txt
-      - name: sleedp for 3 seconds
-        run: sleep 3     
+      - name: Download build artifact again
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifact
+
+      - name: Deploy using artifact
+        run: |
+          echo "Deploying using artifact..."
+          cat artifact.txt
