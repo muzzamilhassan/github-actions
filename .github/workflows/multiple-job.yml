@@ -1,0 +1,32 @@
+name: multipule jobs flow
+on: [push]
+jobs:
+  build-jobs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install cowsay
+        run: sudo apt-get install cowsay
+      - name: execute cowsay
+        run: cowsay -f dragon "Build job executed successfully!" >> build_output.txt
+      - name: sleedp for 10 seconds
+        run: sleep 10
+  test-jobs:
+    runs-on: ubuntu-latest
+    needs: build-jobs
+    steps:
+      - name: install cowsay
+        run: sudo apt-get install cowsay
+      - name: execute cowsay
+        run: cowsay -f turtle "Test job executed successfully!" >> test_output.txt
+      - name: sleedp for 5 seconds
+        run: sleep 5
+  deploy-jobs:
+    runs-on: ubuntu-latest
+    needs: test-jobs
+    steps:
+      - name: install cowsay
+        run: sudo apt-get install cowsay
+      - name: execute cowsay
+        run: cowsay -f elephant "Deploy job executed successfully!" >> deploy_output.txt
+      - name: sleedp for 3 seconds
+        run: sleep 3     
