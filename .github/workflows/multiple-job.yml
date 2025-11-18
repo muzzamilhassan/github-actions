@@ -1,6 +1,7 @@
 name: Multipule Jobs Flow
 
-on: [push]
+on: 
+    workflow_dispatch:
 
 jobs:
   build-job:
@@ -18,6 +19,9 @@ jobs:
   test-job:
     runs-on: ubuntu-latest
     needs: build-job
+    concurrency:
+      group: test-job-group
+      cancel-in-progress: false
     steps:
       - name: Download build artifact
         uses: actions/download-artifact@v4
@@ -28,6 +32,8 @@ jobs:
         run: |
           echo "Testing the artifact..."
           cat artifact.txt
+      - name: sleep for 10 mints
+        run: sleep 600
 
   deploy-job:
     runs-on: ubuntu-latest
