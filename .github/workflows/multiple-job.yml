@@ -33,7 +33,7 @@ jobs:
           echo "Testing the artifact..."
           cat artifact.txt
       - name: sleep for 10 mints
-        run: sleep 600
+        run: sleep 600s
 
   deploy-job:
     runs-on: ubuntu-latest
