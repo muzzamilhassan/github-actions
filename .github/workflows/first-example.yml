@@ -4,6 +4,8 @@ jobs:
   First-jobs:
     runs-on: ubuntu-latest # Use the latest Ubuntu runner
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4 # Checkout the repository to the runner
       - name: First Example
         run: echo "This is my first example workflow!" # Print a message to the console
       - name: ls
