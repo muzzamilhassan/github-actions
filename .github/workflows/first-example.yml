@@ -8,5 +8,5 @@ jobs:
         run: echo "This is my first example workflow!" # Print a message to the console
       - name: ls
         run: ls -la # List all files and directories with detailed information
-      - name: Print working directory
-        run: pwd # Print the current working directory
+      - name: cat README.md
+        run: cat README.md # Display the contents of the README.md file
