@@ -6,9 +6,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4 # Checkout the repository to the runner
-      - name: First Example
-        run: echo "This is my first example workflow!" # Print a message to the console
-      - name: ls
-        run: ls -la # List all files and directories with detailed information
-      - name: cat README.md
-        run: cat README.md # Display the contents of the README.md file
+      - name: Run multiple commands
+        run: |
+          echo "Hello, World!" # Print Hello, World! to the console
+          ls -la # List all files and directories with detailed information
+          cat README.md # Display the contents of the README.md file
+      #   run: echo "This is my first example workflow!" # Print a message to the console
+      # - name: ls
+      #   run: ls -la # List all files and directories with detailed information
+      # - name: cat README.md
+      #   run: cat README.md # Display the contents of the README.md file
