@@ -1,0 +1,36 @@
+name: Context Testing
+on: push
+
+jobs:
+  dump_contexts:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        node: [16, 18]
+
+    steps:
+      - name: Dump GitHub context
+        run: echo '${{ toJson(github) }}'
+
+      - name: Dump Job context
+        run: echo '${{ toJson(job) }}'
+
+      - name: Dump Steps context
+        run: echo '${{ toJson(steps) }}'
+
+      - name: Dump Runner context
+        run: echo '${{ toJson(runner) }}'
+
+      - name: Dump Strategy context
+        run: echo '${{ toJson(strategy) }}'
+
+      - name: Dump Matrix context
+        run: echo '${{ toJson(matrix) }}'
+
+      - name: Dump Env context
+        run: echo '${{ toJson(env) }}'
+
+      - name: Dump Inputs context (if workflow_dispatch)
+        run: echo '${{ toJson(inputs) }}'
