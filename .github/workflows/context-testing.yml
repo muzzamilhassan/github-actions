@@ -6,9 +6,12 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-        node: [16, 18]
+        fail-fast: false
+        max-parallel: 2
+        matrix:
+            os: [ubuntu-latest, macos-latest]
+            node: [16, 18]
+        
 
     steps:
       - name: Dump GitHub context
