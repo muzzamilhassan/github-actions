@@ -2,8 +2,8 @@ name: Docker CI/CD Workflow
 
 # Trigger workflow on push to main or manual trigger
 on:
-    schedule:
-    - cron: '*/1 * * * *'  # Runs every 1 minute
+    # schedule:
+    # - cron: '*/1 * * * *'  # Runs every 1 minute
     workflow_dispatch:       # Allows manual trigger
 #   push:
 #     branches:
